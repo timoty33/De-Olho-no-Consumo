@@ -13,5 +13,8 @@ maxAgua, minAgua = dtanC.maxMinAgua(dataDias)
 mediaAgua = dtanC.mediaAgua(dataDias)
 mediaEnergia = dtanC.mediaEnergia(dataDias)
 
+aguaManhaTarde, aguaTardeNoite, energiaManhaTarde, energiaTardeNoite = dtanC.periodosAguaEnergia(dataDias)
+
 dtanG.graficoDiferencaTotal(diasSemana, diferencasTotalAgua, diferencasTotalEnergia)
+dtanG.graficoPizza(aguaManhaTarde, aguaTardeNoite, energiaManhaTarde, energiaTardeNoite)
 dtanG.dadosGerais(mediaAgua, mediaEnergia, maxEnergia, maxAgua, minEnergia, minAgua)

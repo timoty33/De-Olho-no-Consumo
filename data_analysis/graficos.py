@@ -73,7 +73,14 @@ def graficoDiferencasEnergia(DSD, diferencasEnergia):
     plt.tight_layout()
     plt.show()
 
-def graficoPizza(Agua)
+def graficoPizza(aguaManha, aguaTarde, energiaManha, energiaTarde):
+    valores = [aguaManha, aguaTarde, energiaManha, energiaTarde]
+    labels = ["Água Manhã-Tarde", "Água Tarde-Noite", "Energia Manhã-Tarde", "Energia Tarde-Noite"]
+    cores = ["#7EB6CA", "#2C5F72", "#FFFF66", "#FF9933"]
+
+    plt.pie(valores, labels=labels, colors=cores, autopct="%1.1f%%")
+    plt.title("Gastos da água e energia separados em períodos")
+    plt.show()
 
 def dadosGerais(mediaAgua, mediaEnergia, maxEnergia, maxAgua, minEnergia, minAgua):
     fig, ax = plt.subplots()
@@ -98,4 +105,4 @@ def dadosGerais(mediaAgua, mediaEnergia, maxEnergia, maxAgua, minEnergia, minAgu
     plt.show()
 
 if __name__ == "__main__":
-    graficoDiferencasAgua(diasSemanaDividos, [1, 2, 1, 3, 2, 2, 3, 1, 2, 4, 1, 4, 2, 1])
+    graficoPizza(8, 9, 12, 10)

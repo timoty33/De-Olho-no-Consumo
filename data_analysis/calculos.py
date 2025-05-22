@@ -126,6 +126,22 @@ def maxMinAgua(json):
 
     return maxAguaSalvo, minAguaSalvo
 
+def periodosAguaEnergia(json):
+
+    aguaManhaTarde = 0
+    aguaTardeNoite = 0
+    energiaManhaTarde = 0
+    energiaTardeNoite = 0
+
+    for i in range(1, 8):
+        
+        aguaManhaTarde += json["dia"+f"{i}"]["agua"][0]
+        aguaTardeNoite += json["dia"+f"{i}"]["agua"][1]
+        energiaManhaTarde += json["dia"+f"{i}"]["energia"][0]
+        energiaTardeNoite += json["dia"+f"{i}"]["energia"][1]
+
+    return aguaManhaTarde, aguaTardeNoite, energiaManhaTarde, energiaTardeNoite
+
 if __name__ == "__main__":
     dataDias = carregarJson("../data/diferencasAguaEnergia.json")
     a = diferencasTotalAgua(dataDias)
