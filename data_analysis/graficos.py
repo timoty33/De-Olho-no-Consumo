@@ -73,6 +73,8 @@ def graficoDiferencasEnergia(DSD, diferencasEnergia):
     plt.tight_layout()
     plt.show()
 
+def graficoPizza(Agua)
+
 def dadosGerais(mediaAgua, mediaEnergia, maxEnergia, maxAgua, minEnergia, minAgua):
     fig, ax = plt.subplots()
 

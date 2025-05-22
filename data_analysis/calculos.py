@@ -5,7 +5,7 @@ def carregarJson(caminho):
 
     diretorio_script = os.path.dirname(os.path.abspath(__file__))
 
-    caminho_completo = os.path.join(diretorio_script, r"..\\"+caminho)
+    caminho_completo = os.path.join(diretorio_script, r"../"+caminho)
 
     with open(caminho_completo, "r", encoding="utf-8") as arquivo:
         dados = json.load(arquivo)
