@@ -5,7 +5,7 @@ def carregarJson(caminho):
 
     diretorio_script = os.path.dirname(os.path.abspath(__file__))
 
-    caminho_completo = os.path.join(diretorio_script, caminho)
+    caminho_completo = os.path.join(diretorio_script, r"..\\"+caminho)
 
     with open(caminho_completo, "r", encoding="utf-8") as arquivo:
         dados = json.load(arquivo)
@@ -42,6 +42,20 @@ def jsonDiferencasAguaEnergia(json):
 
     return data
 
+def diferencasTotalAgua(jsonDiferencas):
+    diferencasDiaAgua = []
+    for i in range(1, 8):
+        diferencasDiaAgua.append(sum(jsonDiferencas["dia"+f"{i}"]["agua"]))
+
+    return diferencasDiaAgua
+
+def diferencasTotalEnergia(jsonDiferencas):
+    diferencasDiaEnergia = []
+    for i in range(1, 8):
+        diferencasDiaEnergia.append(sum(jsonDiferencas["dia"+f"{i}"]["energia"]))
+
+    return diferencasDiaEnergia
+
 def mediaAgua(json):
 
     aguaTotal = sum(json["dia1"]["agua"])
@@ -60,7 +74,7 @@ def mediaAgua(json):
     periodoTotal += len(json["dia6"]["agua"])
     periodoTotal += len(json["dia7"]["agua"])
 
-    return round(aguaTotal/periodoTotal)
+    return f"{(aguaTotal/periodoTotal):.2f}"
 
 def mediaEnergia(json):
 
@@ -80,9 +94,45 @@ def mediaEnergia(json):
     periodoTotal += len(json["dia6"]["energia"])
     periodoTotal += len(json["dia7"]["energia"])
 
-    return round(energiaTotal/periodoTotal)
+    return f"{(energiaTotal/periodoTotal):.2f}"
 
-dataDias = carregarJson("../data/diferencasAguaEnergia.json")
-a = mediaAgua(dataDias)
+def maxMinEnergia(json):
 
-print(a)
+    maxEnergiaSalvo = 0
+    minEnergiaSalvo = 0
+
+    for i in range(1, 8):
+        maxEnergia = sum(json["dia"+f"{i}"]["energia"])
+        minEnergia = sum(json["dia"+f"{i}"]["energia"])
+
+        if maxEnergia > maxEnergiaSalvo:
+            maxEnergiaSalvo = maxEnergia
+
+        if minEnergia < minEnergiaSalvo:
+            minEnergiaSalvo = minEnergia
+
+    return maxEnergiaSalvo, minEnergiaSalvo
+
+def maxMinAgua(json):
+
+    maxAguaSalvo = 0
+    minAguaSalvo = 0
+
+    for i in range(1, 8):
+        maxAgua = sum(json["dia"+f"{i}"]["agua"])
+        minAgua = sum(json["dia"+f"{i}"]["agua"])
+
+        if maxAgua > maxAguaSalvo:
+            maxAguaSalvo = maxAgua
+
+        if minAgua < minAguaSalvo:
+            minAguaSalvo = minAgua
+
+    return maxAguaSalvo, minAguaSalvo
+
+
+if __name__ == "__main__":
+    dataDias = carregarJson("../data/diferencasAguaEnergia.json")
+    a = diferencasTotalAgua(dataDias)
+
+    print(a)

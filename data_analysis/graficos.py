@@ -6,22 +6,25 @@ diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domi
 diasSemanaDividos = ["Segunda M/T", "Segunda T/N", "Terça M/T", "Terça T/N", "Quarta M/T", "Quarta T/N", "Quinta M/T", "Quinta T/N", "Sexta M/T", "Sexta T/N", "Sábado M/T", "Sábado T/N", "Domingo M/T", "Domingo T/N"]
 diferencasTotais = [2, 4, 3, 7, 3, 4, 3]
 
-def graficoDiferencaTotalAgua(x, diferencasTotais):
-    plt.bar(x, diferencasTotais, color="#7EB6CA", label="Gasto de água por dia", width=0.5)
-    plt.plot(x, diferencasTotais, color="#2C5F72", label="Gasto de água por dia", linestyle="--")
+def graficoDiferencaTotal(x, diferencasTotaisAgua, diferencasTotaisEnergia):
+
+    plt.subplot(2, 1, 1)
+    plt.bar(x, diferencasTotaisAgua, color="#7EB6CA", label="Gasto de água por dia", width=0.5)
+    plt.plot(x, diferencasTotaisAgua, color="#2C5F72", label="Gasto de água por dia", linestyle="dotted")
     plt.title("Diferenças no aumento de água !")
     plt.xlabel("Dias", fontweight="bold")
-    plt.ylabel("Aumento", fontweight="bold")
+    plt.ylabel("Aumento de 10 em 10 litros", fontweight="bold")
     plt.legend()
-    plt.show()
 
-def graficoDiferencaTotalEnergia(x, diferencasTotais):
-    plt.bar(x, diferencasTotais, color="#FFFF66", label="Gasto de enegia por dia", width=0.5)
-    plt.plot(x, diferencasTotais, color="#FF9933", label="Gasto de enegia por dia", linestyle="--")
+    plt.subplot(2, 1, 2)
+    plt.bar(x, diferencasTotaisEnergia, color="#FFFF66", label="Gasto de enegia por dia", width=0.5)
+    plt.plot(x, diferencasTotaisEnergia, color="#FF9933", label="Gasto de enegia por dia", linestyle="dotted")
     plt.title("Diferenças no aumento de energia !")
     plt.xlabel("Dias", fontweight="bold")
-    plt.ylabel("Aumento", fontweight="bold")
+    plt.ylabel("Aumento em Kw/H", fontweight="bold")
     plt.legend()
+
+    plt.tight_layout()
     plt.show()
 
 def graficoDiferencasAgua(DSD, diferencasAgua):
@@ -38,6 +41,29 @@ def graficoDiferencasAgua(DSD, diferencasAgua):
 
     plt.bar(posicoes, diferencasAgua, color=cores_barras)
     plt.title("Diferenças dos gastos de água: Manhã/Tarde | Tarde/Noite")
+    plt.xlabel("Dias", fontweight="bold")
+    plt.ylabel("Diferenças", fontweight="bold")
+    plt.legend(handles=legendas)
+
+    plt.xticks(posicoes, DSD, rotation=45)
+
+    plt.tight_layout()
+    plt.show()
+
+def graficoDiferencasEnergia(DSD, diferencasEnergia):
+    cores = ['#FFFF66', '#FF9933']
+    cores_barras = [cores[i % 2] for i in range(len(diferencasEnergia))]
+    legendas = [
+        Patch(facecolor='#FFFF66', label="Manhã/Tarde"),
+        Patch(facecolor='#FF9933', label="Tarde/Noite")
+    ]
+
+    posicoes = np.arange(len(DSD)) - 0.6
+
+    plt.figure(figsize=(7, 5))
+
+    plt.bar(posicoes, diferencasEnergia, color=cores_barras)
+    plt.title("Diferenças dos gastos de energia: Manhã/Tarde | Tarde/Noite")
     plt.xlabel("Dias", fontweight="bold")
     plt.ylabel("Diferenças", fontweight="bold")
     plt.legend(handles=legendas)
@@ -69,4 +95,5 @@ def dadosGerais(mediaAgua, mediaEnergia, maxEnergia, maxAgua, minEnergia, minAgu
 
     plt.show()
 
-graficoDiferencasAgua(diasSemanaDividos, [1, 2, 1, 3, 2, 2, 3, 1, 2, 4, 1, 4, 2, 1])
+if __name__ == "__main__":
+    graficoDiferencasAgua(diasSemanaDividos, [1, 2, 1, 3, 2, 2, 3, 1, 2, 4, 1, 4, 2, 1])
