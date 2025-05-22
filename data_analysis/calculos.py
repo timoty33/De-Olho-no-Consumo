@@ -97,39 +97,34 @@ def mediaEnergia(json):
     return f"{(energiaTotal/periodoTotal):.2f}"
 
 def maxMinEnergia(json):
-
-    maxEnergiaSalvo = 0
-    minEnergiaSalvo = 0
+    maxEnergiaSalvo = float('-inf')  # menor valor possível
+    minEnergiaSalvo = float('inf')   # maior valor possível
 
     for i in range(1, 8):
-        maxEnergia = sum(json["dia"+f"{i}"]["energia"])
-        minEnergia = sum(json["dia"+f"{i}"]["energia"])
+        somaEnergia = sum(json[f"dia{i}"]["energia"])
 
-        if maxEnergia > maxEnergiaSalvo:
-            maxEnergiaSalvo = maxEnergia
+        if somaEnergia > maxEnergiaSalvo:
+            maxEnergiaSalvo = somaEnergia
 
-        if minEnergia < minEnergiaSalvo:
-            minEnergiaSalvo = minEnergia
+        if somaEnergia < minEnergiaSalvo:
+            minEnergiaSalvo = somaEnergia
 
     return maxEnergiaSalvo, minEnergiaSalvo
 
 def maxMinAgua(json):
-
-    maxAguaSalvo = 0
-    minAguaSalvo = 0
+    maxAguaSalvo = float('-inf')
+    minAguaSalvo = float('inf')
 
     for i in range(1, 8):
-        maxAgua = sum(json["dia"+f"{i}"]["agua"])
-        minAgua = sum(json["dia"+f"{i}"]["agua"])
+        somaAgua = sum(json[f"dia{i}"]["agua"])
 
-        if maxAgua > maxAguaSalvo:
-            maxAguaSalvo = maxAgua
+        if somaAgua > maxAguaSalvo:
+            maxAguaSalvo = somaAgua
 
-        if minAgua < minAguaSalvo:
-            minAguaSalvo = minAgua
+        if somaAgua < minAguaSalvo:
+            minAguaSalvo = somaAgua
 
     return maxAguaSalvo, minAguaSalvo
-
 
 if __name__ == "__main__":
     dataDias = carregarJson("../data/diferencasAguaEnergia.json")
