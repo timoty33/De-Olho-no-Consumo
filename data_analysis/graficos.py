@@ -6,6 +6,62 @@ diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domi
 diasSemanaDividos = ["Segunda M/T", "Segunda T/N", "Terça M/T", "Terça T/N", "Quarta M/T", "Quarta T/N", "Quinta M/T", "Quinta T/N", "Sexta M/T", "Sexta T/N", "Sábado M/T", "Sábado T/N", "Domingo M/T", "Domingo T/N"]
 diferencasTotais = [2, 4, 3, 7, 3, 4, 3]
 
+import matplotlib.pyplot as plt
+
+def tabelaDadosAgua(dados):
+    linhas = ["Dia 1", "Dia 2", "Dia 3", "Dia 4", "Dia 5", "Dia 6", "Dia 7"]
+    colunas = ["Manhã", "Tarde", "Noite"]
+    dadosTabela = [
+        [dados[0], dados[1], dados[2]],
+        [dados[3], dados[4], dados[5]],
+        [dados[6], dados[7], dados[8]],
+        [dados[9], dados[10], dados[11]],
+        [dados[12], dados[13], dados[14]],
+        [dados[15], dados[16], dados[17]],
+        [dados[18], dados[19], dados[20]]
+    ]
+
+    fig, ax = plt.subplots(figsize=(4, 3))  # Tamanho reduzido
+    ax.axis('off')
+
+    tabela = ax.table(cellText=dadosTabela,
+                      colLabels=colunas,
+                      rowLabels=linhas,
+                      loc="center")
+
+    tabela.scale(1, 1.2)  # Ajuste leve
+
+    plt.title("Tabela das contagens do hidrômetro", fontsize=12)
+
+    plt.show()
+
+def tabelaDadosEnergia(dados):
+    linhas = ["Dia 1", "Dia 2", "Dia 3", "Dia 4", "Dia 5", "Dia 6", "Dia 7"]
+    colunas = ["Manhã", "Tarde", "Noite"]
+    dadosTabela = [
+        [dados[0], dados[1], dados[2]],
+        [dados[3], dados[4], dados[5]],
+        [dados[6], dados[7], dados[8]],
+        [dados[9], dados[10], dados[11]],
+        [dados[12], dados[13], dados[14]],
+        [dados[15], dados[16], dados[17]],
+        [dados[18], dados[19], dados[20]]
+    ]
+
+    fig, ax = plt.subplots(figsize=(4, 3))  # Igual ao anterior
+    ax.axis('off')
+
+    tabela = ax.table(cellText=dadosTabela,
+                      colLabels=colunas,
+                      rowLabels=linhas,
+                      loc="center")
+
+    tabela.scale(1, 1.2)
+
+    plt.title("Tabela das contagens do relógio de luz", fontsize=12)
+
+    plt.show()
+
 def graficoDiferencaTotal(x, diferencasTotaisAgua, diferencasTotaisEnergia):
 
     plt.subplot(2, 1, 1)
@@ -42,7 +98,7 @@ def graficoDiferencasAgua(DSD, diferencasAgua):
     plt.bar(posicoes, diferencasAgua, color=cores_barras)
     plt.title("Diferenças dos gastos de água: Manhã/Tarde | Tarde/Noite")
     plt.xlabel("Dias", fontweight="bold")
-    plt.ylabel("Diferenças", fontweight="bold")
+    plt.ylabel("Diferenças de 10 em 10 litros", fontweight="bold")
     plt.legend(handles=legendas)
 
     plt.xticks(posicoes, DSD, rotation=45)
@@ -65,7 +121,7 @@ def graficoDiferencasEnergia(DSD, diferencasEnergia):
     plt.bar(posicoes, diferencasEnergia, color=cores_barras)
     plt.title("Diferenças dos gastos de energia: Manhã/Tarde | Tarde/Noite")
     plt.xlabel("Dias", fontweight="bold")
-    plt.ylabel("Diferenças", fontweight="bold")
+    plt.ylabel("Diferenças em Kw/H", fontweight="bold")
     plt.legend(handles=legendas)
 
     plt.xticks(posicoes, DSD, rotation=45)
@@ -98,7 +154,7 @@ def dadosGerais(mediaAgua, mediaEnergia, maxEnergia, maxAgua, minEnergia, minAgu
 
     ax.text(0.05, 0.95, texto, transform=ax.transAxes,
             fontsize=12, verticalalignment='top',
-            bbox=dict(boxstyle='round', facecolor='lightyellow', edgecolor='gray'))
+            bbox=dict(boxstyle='round', facecolor='#ccc', edgecolor='gray'))
 
     plt.title('Resumo dos Dados de Consumo')
 

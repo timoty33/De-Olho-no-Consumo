@@ -5,7 +5,7 @@ def carregarJson(caminho):
 
     diretorio_script = os.path.dirname(os.path.abspath(__file__))
 
-    caminho_completo = os.path.join(diretorio_script, r"../"+caminho)
+    caminho_completo = os.path.join(diretorio_script, caminho)
 
     with open(caminho_completo, "r", encoding="utf-8") as arquivo:
         dados = json.load(arquivo)
@@ -142,8 +142,48 @@ def periodosAguaEnergia(json):
 
     return aguaManhaTarde, aguaTardeNoite, energiaManhaTarde, energiaTardeNoite
 
+def modificarJsonDiferencasAgua(json):
+
+    dados = []
+
+    for i in range(1, 8):
+        for j in range(0, 2):
+            dados.append(json["dia"+f"{i}"]["agua"][j])
+
+    return dados
+
+def modificarJsonDiferencasEnergia(json):
+
+    dados = []
+
+    for i in range(1, 8):
+        for j in range(0, 2):
+            dados.append(json["dia"+f"{i}"]["energia"][j])
+
+    return dados
+
+def modificarJsonAgua(json):
+
+    dados = []
+
+    for i in range(1, 8):
+        for j in range(0, 3):
+            dados.append(json["dia"+f"{i}"]["agua"][j])
+
+    return dados
+
+def modificarJsonEnergia(json):
+
+    dados = []
+
+    for i in range(1, 8):
+        for j in range(0, 3):
+            dados.append(json["dia"+f"{i}"]["energia"][j])
+
+    return dados
+
 if __name__ == "__main__":
-    dataDias = carregarJson("../data/diferencasAguaEnergia.json")
-    a = diferencasTotalAgua(dataDias)
+    dataDias = carregarJson(r"..\\data\\data.json")
+    a = modificarJsonAgua(dataDias)
 
     print(a)
