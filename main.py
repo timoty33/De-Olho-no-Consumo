@@ -1,5 +1,11 @@
 import data_analysis.calculos as dtanC
 import data_analysis.graficos as dtanG
+import IA.ai as IA
+
+data = IA.ai()
+
+dtanC.salvarJson(data, data.json, r"..\\data")
+dtanC.jsonDiferencasAguaEnergia(r"..\\data\\data.json")
 
 diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
 diasSemanaDividos = ["Segunda M/T", "Segunda T/N", "Terça M/T", "Terça T/N", "Quarta M/T", "Quarta T/N", "Quinta M/T", "Quinta T/N", "Sexta M/T", "Sexta T/N", "Sábado M/T", "Sábado T/N", "Domingo M/T", "Domingo T/N"]
