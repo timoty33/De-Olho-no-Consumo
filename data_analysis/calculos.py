@@ -1,16 +1,9 @@
 import json
 import os
 
-def carregarJson(caminho):
-
-    diretorio_script = os.path.dirname(os.path.abspath(__file__))
-
-    caminho_completo = os.path.join(diretorio_script, caminho)
-
-    with open(caminho_completo, "r", encoding="utf-8") as arquivo:
-        dados = json.load(arquivo)
-
-    return dados
+def carregarJson(nomeArquivo):
+    with open(nomeArquivo, "r", encoding="utf-8") as arquivo:
+        return json.load(arquivo)
 
 def salvarJson(dados, nomeArquivo, pastaDestino):
 
@@ -27,18 +20,17 @@ def jsonDiferencasAguaEnergia(json):
     data = {}
 
     for i in range(1, 8):
-        dia = f"dia{i}"
-        data[dia] = {"agua": [], "energia": []}
+        data[f"dia{i}"] = {"agua": [], "energia": []}
 
         # Diferenças de água
-        agua = json[dia]["agua"]
+        agua = json[f"dia{i}"]["agua"]
         for j in range(1, len(agua)):
-            data[dia]["agua"].append(agua[j] - agua[j - 1])
+            data[f"dia{i}"]["agua"].append(agua[j] - agua[j - 1])
 
         # Diferenças de energia
-        energia = json[dia]["energia"]
+        energia = json[f"dia{i}"]["energia"]
         for j in range(1, len(energia)):
-            data[dia]["energia"].append(energia[j] - energia[j - 1])
+            data[f"dia{i}"]["energia"].append(energia[j] - energia[j - 1])
 
     return data
 
