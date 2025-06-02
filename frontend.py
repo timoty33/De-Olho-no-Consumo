@@ -8,19 +8,63 @@ energia_manha = 0
 energia_tarde = 0
 energia_noite = 0
 
+final_data = {
+    "dia1": {
+        "agua": [],
+        "energia": []
+    },
+    "dia2": {
+        "agua": [],
+        "energia": []
+    },
+    "dia3": {
+        "agua": [],
+        "energia": []
+    },
+    "dia4": {
+        "agua": [],
+        "energia": []
+    },
+    "dia5": {
+        "agua": [],
+        "energia": []
+    },
+    "dia6": {
+        "agua": [],
+        "energia": []
+    },
+    "dia7": {
+        "agua": [],
+        "energia": []
+    }
+}
+
 def receber(a1, a2, a3, e1, e2, e3):
-    # Pega os valores
-    agua_manha = a1.get()
-    agua_tarde = a2.get()
-    agua_noite = a3.get()
+    # Pega os valores e retorna
+    agua_manha = float(a1.get().replace(",", ".").replace(" ", "."))
+    agua_tarde = float(a2.get().replace(",", ".").replace(" ", "."))
+    agua_noite = float(a3.get().replace(",", ".").replace(" ", "."))
 
-    energia_manha = e1.get()
-    energia_tarde = e2.get()
-    energia_noite = e3.get()
+    energia_manha = float(e1.get().replace(",", ".").replace(" ", "."))
+    energia_tarde = float(e2.get().replace(",", ".").replace(" ", "."))
+    energia_noite = float(e3.get().replace(",", ".").replace(" ", "."))
 
-    # Mostra no console
     print("Água:", agua_manha, agua_tarde, agua_noite)
     print("Energia:", energia_manha, energia_tarde, energia_noite)
+
+    return agua_manha, agua_tarde, agua_noite, energia_manha, energia_tarde, energia_noite
+
+def converter_get():
+    global agua_manha, agua_tarde, agua_noite
+    global energia_manha, energia_tarde, energia_noite
+
+    agua_manha = float(agua_manha)
+    agua_tarde = float(agua_tarde)
+    agua_noite = float(agua_noite)
+
+    energia_manha = float(energia_manha)
+    energia_tarde = float(energia_tarde)
+    energia_noite = float(energia_noite)
 
 def App():
 
@@ -60,7 +104,14 @@ def App():
         bloco_energia.grid(column=0, row=2, pady=10)
 
         def receber1():
-            receber(entrada1Agua, entrada2Agua, entrada3Agua, entrada1Energia, entrada2Energia, entrada3Energia)
+            a_manha, a_tarde, a_noite, e_manha, e_tarde, e_noite = receber(
+                entrada1Agua, entrada2Agua, entrada3Agua, 
+                entrada1Energia, entrada2Energia, entrada3Energia
+            )
+
+            final_data["dia1"]["agua"] = [a_manha, a_tarde, a_noite]
+            final_data["dia1"]["energia"] = [e_manha, e_tarde, e_noite]
+
             root.destroy()
         
         # Botão enviar
@@ -86,7 +137,14 @@ def App():
         bloco_energia.grid(column=0, row=2, pady=10)
 
         def receber1():
-            receber(entrada1Agua, entrada2Agua, entrada3Agua, entrada1Energia, entrada2Energia, entrada3Energia)
+            a_manha, a_tarde, a_noite, e_manha, e_tarde, e_noite = receber(
+                entrada1Agua, entrada2Agua, entrada3Agua, 
+                entrada1Energia, entrada2Energia, entrada3Energia
+            )
+
+            final_data["dia2"]["agua"] = [a_manha, a_tarde, a_noite]
+            final_data["dia2"]["energia"] = [e_manha, e_tarde, e_noite]
+
             root.destroy()
         
         # Botão enviar
@@ -112,7 +170,14 @@ def App():
         bloco_energia.grid(column=0, row=2, pady=10)
 
         def receber1():
-            receber(entrada1Agua, entrada2Agua, entrada3Agua, entrada1Energia, entrada2Energia, entrada3Energia)
+            a_manha, a_tarde, a_noite, e_manha, e_tarde, e_noite = receber(
+                entrada1Agua, entrada2Agua, entrada3Agua, 
+                entrada1Energia, entrada2Energia, entrada3Energia
+            )
+
+            final_data["dia3"]["agua"] = [a_manha, a_tarde, a_noite]
+            final_data["dia3"]["energia"] = [e_manha, e_tarde, e_noite]
+
             root.destroy()
         
         # Botão enviar
@@ -138,7 +203,14 @@ def App():
         bloco_energia.grid(column=0, row=2, pady=10)
 
         def receber1():
-            receber(entrada1Agua, entrada2Agua, entrada3Agua, entrada1Energia, entrada2Energia, entrada3Energia)
+            a_manha, a_tarde, a_noite, e_manha, e_tarde, e_noite = receber(
+                entrada1Agua, entrada2Agua, entrada3Agua, 
+                entrada1Energia, entrada2Energia, entrada3Energia
+            )
+
+            final_data["dia4"]["agua"] = [a_manha, a_tarde, a_noite]
+            final_data["dia4"]["energia"] = [e_manha, e_tarde, e_noite]
+
             root.destroy()
         
         # Botão enviar
@@ -164,7 +236,14 @@ def App():
         bloco_energia.grid(column=0, row=2, pady=10)
 
         def receber1():
-            receber(entrada1Agua, entrada2Agua, entrada3Agua, entrada1Energia, entrada2Energia, entrada3Energia)
+            a_manha, a_tarde, a_noite, e_manha, e_tarde, e_noite = receber(
+                entrada1Agua, entrada2Agua, entrada3Agua, 
+                entrada1Energia, entrada2Energia, entrada3Energia
+            )
+
+            final_data["dia5"]["agua"] = [a_manha, a_tarde, a_noite]
+            final_data["dia5"]["energia"] = [e_manha, e_tarde, e_noite]
+
             root.destroy()
         
         # Botão enviar
@@ -190,7 +269,14 @@ def App():
         bloco_energia.grid(column=0, row=2, pady=10)
 
         def receber1():
-            receber(entrada1Agua, entrada2Agua, entrada3Agua, entrada1Energia, entrada2Energia, entrada3Energia)
+            a_manha, a_tarde, a_noite, e_manha, e_tarde, e_noite = receber(
+                entrada1Agua, entrada2Agua, entrada3Agua, 
+                entrada1Energia, entrada2Energia, entrada3Energia
+            )
+
+            final_data["dia6"]["agua"] = [a_manha, a_tarde, a_noite]
+            final_data["dia6"]["energia"] = [e_manha, e_tarde, e_noite]
+
             root.destroy()
         
         # Botão enviar
@@ -216,7 +302,14 @@ def App():
         bloco_energia.grid(column=0, row=2, pady=10)
 
         def receber1():
-            receber(entrada1Agua, entrada2Agua, entrada3Agua, entrada1Energia, entrada2Energia, entrada3Energia)
+            a_manha, a_tarde, a_noite, e_manha, e_tarde, e_noite = receber(
+                entrada1Agua, entrada2Agua, entrada3Agua, 
+                entrada1Energia, entrada2Energia, entrada3Energia
+            )
+
+            final_data["dia7"]["agua"] = [a_manha, a_tarde, a_noite]
+            final_data["dia7"]["energia"] = [e_manha, e_tarde, e_noite]
+
             root.destroy()
         
         # Botão enviar
@@ -232,4 +325,8 @@ def App():
     dia6()
     dia7()
 
-App()
+    print(final_data)
+    return final_data
+
+if __name__ == "__main__":
+    App()

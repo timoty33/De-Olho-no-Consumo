@@ -1,11 +1,18 @@
 import data_analysis.calculos as dtanC
 import data_analysis.graficos as dtanG
+import frontend
+
+dataInicial = frontend.App()
 
 diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
 diasSemanaDividos = ["Segunda M/T", "Segunda T/N", "Terça M/T", "Terça T/N", "Quarta M/T", "Quarta T/N", "Quinta M/T", "Quinta T/N", "Sexta M/T", "Sexta T/N", "Sábado M/T", "Sábado T/N", "Domingo M/T", "Domingo T/N"]
 
-dataDias = dtanC.carregarJson(r"..\data\diferencasAguaEnergia.json")
-dataDias1 = dtanC.carregarJson(r"..\data\data.json")
+dtanC.salvarJson(dataInicial, "data.json", "data")
+jsonDiferencasAguaEnergia = dtanC.jsonDiferencasAguaEnergia(dataInicial)
+dtanC.salvarJson(jsonDiferencasAguaEnergia, "diferencasAguaEnergia.json", "data")
+
+dataDias = dtanC.carregarJson(r"data\diferencasAguaEnergia.json")
+dataDias1 = dtanC.carregarJson(r"data\data.json")
 
 dadosTabelaAgua = dtanC.modificarJsonAgua(dataDias1)
 dadosTabelaEnergia = dtanC.modificarJsonEnergia(dataDias1)
